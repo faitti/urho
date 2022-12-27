@@ -5,7 +5,6 @@ import { UserModule } from 'src/user/user.module';
 import { AuthService } from './auth.service';
 import { JWT_SECRET } from './constants';
 import { JwtStrategy } from './strategies/jwt.strategy';
-import { LocalStrategy } from './strategies/local.strategy';
 import { AuthResolver } from './auth.resolver';
 
 @Module({
@@ -17,6 +16,6 @@ import { AuthResolver } from './auth.resolver';
             signOptions: { expiresIn: '14d' },
         }),
     ],
-    providers: [AuthService, JwtStrategy, LocalStrategy, AuthResolver],
+    providers: [AuthService, JwtStrategy, AuthResolver],
 })
 export class AuthModule {}
