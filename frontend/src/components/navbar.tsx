@@ -8,10 +8,12 @@ import {
   TablerIcon,
 } from "@tabler/icons";
 import {
-  Center,
+  Anchor,
+  Button,
   createStyles,
   Navbar,
   Stack,
+  Text,
   Tooltip,
   UnstyledButton,
 } from "@mantine/core";
@@ -32,7 +34,12 @@ const topData: elementData[] = [
 
 const bottomData: elementData[] = [
   { icon: IconUser, label: "Account", loggedIn: true },
-  { icon: IconLogin, label: "Login", loggedIn: false, changeStatus: true },
+  {
+    icon: IconLogin,
+    label: "Login",
+    loggedIn: false,
+    changeStatus: true,
+  },
   { icon: IconLogout, label: "Logout", loggedIn: true, changeStatus: true },
 ];
 
@@ -100,29 +107,23 @@ export function NavbarElement() {
 
   const bottomLinks = bottomData.map((data, _idx) => {
     if (loggedIn !== data?.loggedIn) return;
-    return (
-      <NavbarLink
-        {...data}
-        key={data.label}
-        onClick={() =>
-          setLoggedIn(data.changeStatus === true ? !loggedIn : loggedIn)
-        }
-      />
-    );
+    return <NavbarLink {...data} key={data.label} />;
   });
 
   return (
-    <Navbar p="md" width={{ base: 80 }}>
-      <Navbar.Section grow mt={50}>
-        <Stack justify="center" spacing={0}>
-          {topLinks}
-        </Stack>
-      </Navbar.Section>
-      <Navbar.Section>
-        <Stack justify="center" spacing={0}>
-          {bottomLinks}
-        </Stack>
-      </Navbar.Section>
-    </Navbar>
+    <>
+      <Navbar p="md" width={{ base: 80 }}>
+        <Navbar.Section grow>
+          <Stack justify="center" spacing={0}>
+            {topLinks}
+          </Stack>
+        </Navbar.Section>
+        <Navbar.Section>
+          <Stack justify="center" spacing={0}>
+            {bottomLinks}
+          </Stack>
+        </Navbar.Section>
+      </Navbar>
+    </>
   );
 }
