@@ -1,7 +1,7 @@
 import React from "react";
-import { Group, MantineProvider, Text } from "@mantine/core";
+import { Group, MantineProvider } from "@mantine/core";
 import { NavbarElement } from "./components/Navbar";
-import LoginElement from "./components/Login";
+import { NotificationsProvider } from "@mantine/notifications";
 
 export class App extends React.Component {
   render() {
@@ -14,10 +14,11 @@ export class App extends React.Component {
           colorScheme: "dark",
         }}
       >
-        <Group align={"start"}>
-          <NavbarElement />
-          <LoginElement />
-        </Group>
+        <NotificationsProvider>
+          <Group align={"start"}>
+            <NavbarElement />
+          </Group>
+        </NotificationsProvider>
       </MantineProvider>
     );
   }
